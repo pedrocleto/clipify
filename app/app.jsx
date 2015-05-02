@@ -1,11 +1,16 @@
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
+var HeaderBar = require('./components/HeaderBar')
+var MainDock = require('./components/MainDock')
 
 var App = React.createClass({
-  render() {
+  render: function() {
     return (
-      <h1>TEST</h1>
+    	<div>
+    		<HeaderBar></HeaderBar>
+    		<MainDock></MainDock>
+    	</div>
     );
   }
 });

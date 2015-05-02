@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -15,11 +15,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-	    compress: {
-	        warnings: false
-	    }
-	})
+ //    new webpack.optimize.UglifyJsPlugin({
+	//     compress: {
+	//         warnings: false
+	//     }
+	// })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx','.css']
@@ -27,7 +27,16 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, loaders: ['react-hot', 'jsx?harmony'], exclude: /node_modules/ },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.scss$/, loader: "style!css!sass" },
+      { test: /.*\.svg$/,loaders: ['file-loader','svgo-loader?useConfig=svgoConfig1'] }
+    ]
+  },
+  svgoConfig1: {
+    plugins: [
+      {removeTitle: true},
+      {convertColors: {shorthex: false}},
+      {convertPathData: false}
     ]
   }
 };
