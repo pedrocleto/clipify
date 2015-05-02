@@ -1,10 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
     './app/index'
   ],
   output: {
@@ -13,13 +10,12 @@ module.exports = {
     publicPath: '/build/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
- //    new webpack.optimize.UglifyJsPlugin({
-	//     compress: {
-	//         warnings: false
-	//     }
-	// })
+    new webpack.optimize.UglifyJsPlugin({
+	     compress: {
+	         warnings: false
+	     }
+	 })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx','.css']
